@@ -4,10 +4,25 @@
     "web": {
       "bundler": "metro"
     },
+    "android": {
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ],
+      "package": "com.jalansubham7.ProjectAegis"
+    },
     "plugins": [
       "expo-router"
     ],
     "name": "Project-Aegis",
-    "slug": "Project-Aegis"
+    "slug": "Project-Aegis",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "db080c27-64dd-437d-ab97-184d301a356c"
+      }
+    }
   }
 }
