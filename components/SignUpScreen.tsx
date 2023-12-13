@@ -1,28 +1,29 @@
 import * as React from "react";
 import { Text, TextInput, TouchableOpacity, View, Image } from "react-native";
-import { useSignIn } from "@clerk/clerk-expo";
+import { useSignUp } from "@clerk/clerk-expo";
 import { useState, useEffect  } from "react";
 import WifiManager from "react-native-wifi-reborn";
 
 
 export default function SignUpScreen({setPhonePostLogin}) {
-  const { isLoaded, signIn, setActive } = useSignIn();
+  const { isLoaded, signUp, setActive } = useSignUp();
  
   const [phoneNumber, setPhoneNumber] = React.useState("");
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
  
   // start the sign up process.
-  const onSignInPress = async () => {
+  const onSignUpPress = async () => {
     if (!isLoaded) {
       return;
     }
     try {
-      const signInNumber = "+91" + phoneNumber;
-      await signIn.create({
-       identifier: signInNumber,
-       strategy: "phone_code",
+      const signUpNumber = "+91" + phoneNumber;
+      await signUp.create({
+        phoneNumber: signUpNumber
+       
       });
+      await signUp.preparePhoneNumberVerification();
  
       // send the email.
  
@@ -40,8 +41,7 @@ export default function SignUpScreen({setPhonePostLogin}) {
     }
  
    
-      const completeSignUp = await signIn.attemptFirstFactor({
-        strategy: "phone_code",
+      const completeSignUp = await signUp.attemptPhoneNumberVerification({
         code: code,
       }).then((result) => {
          setActive({ session: result.createdSessionId });
@@ -91,7 +91,7 @@ export default function SignUpScreen({setPhonePostLogin}) {
  
           
  
-          <TouchableOpacity onPress={onSignInPress} className="mt-8 flex-row w-full justify-center py-3 bg-blue-prim h-12 rounded">
+          <TouchableOpacity onPress={onSignUpPress} className="mt-8 flex-row w-full justify-center py-3 bg-blue-prim h-12 rounded">
             <Text className="text-white" style={{fontFamily: 'PoppinsMedium'}}>Sign In</Text>
           </TouchableOpacity>
         </View>
