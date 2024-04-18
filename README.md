@@ -2,3 +2,6 @@ Built a system of automated verification of campus patrols using access point co
 # Screenshot of Application
 
 ![](aegis.png)
+
+# Conceptual Sketch
+![](aegis.png)
