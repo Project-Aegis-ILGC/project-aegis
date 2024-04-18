@@ -4,4 +4,4 @@ Built a system of automated verification of campus patrols using access point co
 ![](aegis.png)
 
 # Conceptual Sketch
-![](aegis.png)
+![](aegis2.png)
